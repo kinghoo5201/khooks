@@ -1,7 +1,7 @@
 {
   "name": "khooks",
   "description": "common tool hooks",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "typings": "dist/esm/index.d.ts",
