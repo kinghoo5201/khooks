@@ -68,7 +68,7 @@ class Store<InitState extends Object> {
 }
 
 /** 快捷創建一個store類型的上下文 */
-export default function storeCreator<InitState extends Object>(initState: InitState) {
+export function storeCreator<InitState extends Object>(initState: InitState) {
   /** store實例 */
   const storeInstance = new Store(initState);
   /** 初始化上下文 */
