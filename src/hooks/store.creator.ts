@@ -2,8 +2,6 @@
 // @description 快捷创建store工厂方法
 // @author kinghoo
 import { createContext, useContext, useLayoutEffect, useState } from 'react';
-import set from 'lodash/set';
-import cloneDeep from 'lodash/cloneDeep';
 import isPlainObject from 'lodash/isPlainObject';
 
 type IEvent<IInitState> = (store: IInitState) => void;
@@ -22,22 +20,20 @@ class Store<InitState extends Object> {
 
   /** 设置store的值 */
   public setData = <Key extends keyof InitState>(key: Key, value: InitState[Key]) => {
-    const copy = cloneDeep(this.state);
-    // @ts-ignore
-    set(copy, key, value);
-    this.state = copy;
+    this.state = {
+      ...this.state,
+      [key]: value,
+    };
     this.triggerEvent();
     return this;
   };
 
   /** 以對象的形式設置store */
   public setDataObject = (data: Partial<InitState>) => {
-    let copy = cloneDeep(this.state);
-    copy = {
-      ...copy,
+    this.state = {
+      ...this.state,
       ...data,
     };
-    this.state = copy;
     this.triggerEvent();
     return this;
   };
