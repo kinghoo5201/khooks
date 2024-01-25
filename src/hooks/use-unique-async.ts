@@ -18,7 +18,8 @@ export function useUniqueAsync<Parameter extends any[], Result extends any>(
   $fn.current = fn;
   const [response, setResponse] = useState<Result>();
 
-  const asyncFn = useMemo(() => {
+  // @ts-ignore
+  const asyncFn: (...args: Parameter) => Promise<Result> = useMemo(() => {
     const fnBody = async (...args: Parameter) => {
       try {
         setLoading(true);
@@ -56,5 +57,9 @@ export function useUniqueAsync<Parameter extends any[], Result extends any>(
     [],
   );
 
-  return { response, asyncFn, loading };
+  return {
+    response,
+    asyncFn,
+    loading,
+  };
 }
