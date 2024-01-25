@@ -1,7 +1,7 @@
 // UseUniqueAsync
 // @description 防止重复请求、防止组件销毁后执行setState、支持防抖
 // @author kinghoo
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import debounce from 'lodash/debounce';
 import isNil from 'lodash/isNil';
 
