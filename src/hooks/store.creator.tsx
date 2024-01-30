@@ -1,6 +1,7 @@
 // StoreCreator
 // @description 快捷创建store工厂方法
 // @author kinghoo
+import React from 'react';
 import { createContext, useContext, useLayoutEffect, useState } from 'react';
 import isPlainObject from 'lodash/isPlainObject';
 
@@ -105,11 +106,18 @@ export function storeCreator<InitState extends Object>(initState: InitState) {
     return state;
   }
 
+  /** 直接提供封装好的provider */
+  function Provider(props: React.PropsWithChildren) {
+    const store = useInitStore();
+    return <STORE_CONTEXT.Provider value={store}>{props.children}</STORE_CONTEXT.Provider>;
+  }
+
   return {
     useInitStore,
     useStoreContext,
     STORE_CONTEXT,
     initContext,
     storeInstance,
+    Provider,
   };
 }
